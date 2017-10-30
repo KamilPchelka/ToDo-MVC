@@ -18,6 +18,15 @@ class AbstractView:
     def print_result_output(self):
         ...
 
+class RootView(AbstractView):
+
+    def print_view_info(self):
+        ...
+
+    def print_result_output(self):
+        ...
+
+
 class AddTodoItemView(AbstractView):
 
     def print_view_info(self):
