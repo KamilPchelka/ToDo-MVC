@@ -78,7 +78,7 @@ class DeleteItemView(AbstractView):
     def print_view_info(self):
         print('Here you can delete already added tasks!.')
 
-    def call_get_user_input_event(self, tasks_list:[]):
+    def call_get_user_input_event(self,):
         user_input = input('Index of item to be deleted: ')
         controller = Controller.get_instance()
         controller.init_delete_item_view_listener(user_input)
@@ -91,7 +91,7 @@ class MarkItemAsDoneView(AbstractView):
     def print_view_info(self):
         print('Here you can mark as done already added tasks!.')
 
-    def call_get_user_input_event(self, tasks_list:[]):
+    def call_get_user_input_event(self,):
         user_input = input('Index of item to be marked as done: ')
         controller = Controller.get_instance()
         controller.init_delete_item_view_listener(user_input)
