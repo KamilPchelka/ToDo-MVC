@@ -118,7 +118,6 @@ class DisplaySpecificItemView(AbstractView):
         controller.init_delete_item_view_listener(user_input)
 
     def print_result_output(self, task_name:str, task_description:str, is_done:bool):
-        print('New item have been added successfully !')
         print('Task name: %s' % task_name)
         print('Task description: %s' % task_description)
         print('Task status: %s' % 'done' if is_done else 'undone')
