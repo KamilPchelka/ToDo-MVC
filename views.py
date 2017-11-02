@@ -19,6 +19,7 @@ class AbstractView:
         ...
 
     def print_todo_item_info(self, task_name:str, task_description:str, is_done:bool):
+        os.system('clear')
         print('Task name: %s' % task_name)
         print('Task description: %s' % task_description)
         is_done = 'done' if is_done else 'undone'
@@ -106,7 +107,7 @@ class MarkItemAsDoneView(AbstractView):
         super().print_tasks_list(tasks_list)
         user_input = input('Index of item to be marked as done: ')
         controller = Controller.get_instance()
-        controller.delete_item_view_listener(user_input, tasks_list)
+        controller.mark_item_as_done_view_listener(user_input, tasks_list)
 
     def print_result_output(self, item_name:str):
         os.system('clear')
@@ -126,9 +127,9 @@ class DisplaySpecificItemView(AbstractView):
         from controllers import Controller
         os.system('clear')
         super().print_tasks_list(tasks_list)
-        user_input = input('Index of item to be marked as done: ')
+        user_input = input('Index of item to view deatils: ')
         controller = Controller.get_instance()
-        controller.delete_item_view_listener(user_input)
+        controller.display_specyfic_item_view_listener(user_input, tasks_list)
 
     def print_result_output(self, task_name:str, task_description:str, is_done:bool):
         super().print_todo_item_info(task_name, task_description, is_done)
