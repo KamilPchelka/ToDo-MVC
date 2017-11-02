@@ -34,6 +34,10 @@ class RootView(AbstractView):
         controller = Controller.get_instance()
         controller.root_view_listener(input("Type a number of option: "))
 
+    def exit_program(self, msg:str):
+        os.system('clear')
+        exit(msg)
+
 class AddTodoItemView(AbstractView):
 
     def print_view_info(self):
