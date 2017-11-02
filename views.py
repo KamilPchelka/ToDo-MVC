@@ -22,7 +22,7 @@ class AbstractView:
         print('Task name: %s' % task_name)
         print('Task description: %s' % task_description)
         is_done = 'done' if is_done else 'undone'
-        print('Task status: %s' % 'done' if is_done else 'undone')
+        print('Task status: %s' % is_done)
         input('\nType any key...')
 
 class RootView(AbstractView):
