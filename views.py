@@ -4,11 +4,13 @@ import os
 MENU_OPTION_LIST = ['Add ToDo item', 'Modify item', 'Delete Item', 'Mark item as done', "Display item's list",
                     "Display specific todo item's details", 'Exit']
 
+CONFIRM_MESSAGE = '\nType ENTER...'
+
 class AbstractView:
     def print_error_message(self, error_msg:str):
         os.system('clear')
         print('\033[91m' + error_msg + '\033[0m')
-        input('\nType any key...')
+        input(CONFIRM_MESSAGE)
 
     @abc.abstractmethod
     def call_get_user_input_event(self):
@@ -24,7 +26,7 @@ class AbstractView:
         print('Task description: %s' % task_description)
         is_done = 'done' if is_done else 'undone'
         print('Task status: %s' % is_done)
-        input('\nType any key...')
+        input(CONFIRM_MESSAGE)
 
     def print_tasks_list(self, tasks_list:[]):
         print('List of added tasks:')
@@ -81,7 +83,7 @@ class ModifyItemView(AbstractView):
     def print_result_output(self):
         os.system('clear')
         print('The TODO item information have been updated successfully!')
-        input('\nType any key...')
+        input(CONFIRM_MESSAGE)
 
 
 class DeleteItemView(AbstractView):
@@ -97,7 +99,7 @@ class DeleteItemView(AbstractView):
     def print_result_output(self, item_name:str):
         os.system('clear')
         print('Item with name %s have been deleted successfully !' % item_name)
-        input('\nType any key...')
+        input(CONFIRM_MESSAGE)
 
 class MarkItemAsDoneView(AbstractView):
 
@@ -112,14 +114,14 @@ class MarkItemAsDoneView(AbstractView):
     def print_result_output(self, item_name:str):
         os.system('clear')
         print('Item with name %s have been marked as done successfully !' % item_name)
-        input('\nType any key...')
+        input(CONFIRM_MESSAGE)
 
 class DisplayItemListView(AbstractView):
 
     def print_result_output(self, tasks_list:[]):
         os.system('clear')
         super().print_tasks_list(tasks_list)
-        input('\nType any key...')
+        input(CONFIRM_MESSAGE)
 
 class DisplaySpecificItemView(AbstractView):
 
