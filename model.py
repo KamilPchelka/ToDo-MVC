@@ -59,7 +59,7 @@ class ToDoItem:
     @staticmethod
     def get_todo_items_list():
         ToDoItem.load_todo_items_from_file()
-        if not ToDoItem.todo_items_list: raise Exception('List of Todo items is empty !')
+        #if not ToDoItem.todo_items_list: raise Exception('List of Todo items is empty !')
         return ToDoItem.todo_items_list
 
     @staticmethod
