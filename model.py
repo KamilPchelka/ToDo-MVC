@@ -15,7 +15,8 @@ class ToDoItem:
 
     @staticmethod
     def raise_exception_if_item_with_such_name_exists(name:str):
-        for todo_item in ToDoItem.get_todo_items_list():
+        ToDoItem.load_todo_items_from_file()
+        for todo_item in ToDoItem.todo_items_list:
             if todo_item.get_name().lower() == name.lower():
                 raise Exception('Such TodoItem exists !')
 
@@ -52,16 +53,17 @@ class ToDoItem:
         if ToDoItem.todo_items_list.__contains__(todo_item):
             ToDoItem.todo_items_list.remove(todo_item)
         else:
-            return None
+            raise Exception('Such item does not exist !')
+        ToDoItem.save_todo_items_to_file()
 
     @staticmethod
     def get_todo_items_list():
         ToDoItem.load_todo_items_from_file()
+        #if not ToDoItem.todo_items_list: raise Exception('List of Todo items is empty !')
         return ToDoItem.todo_items_list
 
     @staticmethod
     def save_todo_items_to_file():
-        if not ToDoItem.todo_items_list: return #if todoitems instance list is empty it does not save it to file
         with open('todoitems.data', 'wb') as output:
             pickle.dump(ToDoItem.todo_items_list, output, pickle.HIGHEST_PROTOCOL) #saves object to file
 
