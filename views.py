@@ -23,13 +23,13 @@ class RootView(AbstractView):
 
     def print_view_info(self):
         for index, option in enumerate(self.menu_option_list):
-            print(index, option)
+            print(str(index +1) + '. ' + option)
 
     def call_get_user_input_event(self):
         from controllers import Controller
         self.print_view_info()
         controller = Controller.get_instance()
-        controller.init_root_view_listener(input("\n Type a number of option: "))
+        controller.root_view_listener(input("\n Type a number of option: "))
 
 class AddTodoItemView(AbstractView):
 
@@ -42,7 +42,7 @@ class AddTodoItemView(AbstractView):
         controller = Controller.get_instance()
         print('Type info about item in following syntax <name:str,description:str,is done:bool>')
         user_input = input("\ni.e buy vegetables,tommorow go to shop,false: ")
-        controller.init_add_todo_item_view_listener(user_input)
+        controller.add_todo_item_view_listener(user_input)
 
     def print_result_output(self, task_name:str, task_description:str, is_done:bool):
         print('New item have been added successfully !')
@@ -63,7 +63,7 @@ class ModifyItemView(AbstractView):
         print('If you want to change the desc type: desc,index,<new_desc>')
         user_input = input('Your choice: ')
         controller = Controller.get_instance()
-        controller.init_add_modify_item_view_listener(user_input)
+        controller.add_modify_item_view_listener(user_input)
 
     def print_result_output(self):
         print('The TODO item information have been updated successfully!')
@@ -78,7 +78,7 @@ class DeleteItemView(AbstractView):
         from controllers import Controller
         user_input = input('Index of item to be deleted: ')
         controller = Controller.get_instance()
-        controller.init_delete_item_view_listener(user_input)
+        controller.delete_item_view_listener(user_input)
 
     def print_result_output(self, item_name:str):
         print('Item with name %s have been deleted successfully !' % item_name)
@@ -92,7 +92,7 @@ class MarkItemAsDoneView(AbstractView):
         from controllers import Controller
         user_input = input('Index of item to be marked as done: ')
         controller = Controller.get_instance()
-        controller.init_delete_item_view_listener(user_input)
+        controller.delete_item_view_listener(user_input)
 
     def print_result_output(self, item_name:str):
         print('Item with name %s have been marked as done successfully !' % item_name)
@@ -114,7 +114,7 @@ class DisplaySpecificItemView(AbstractView):
         from controllers import Controller
         user_input = input('Index of item to be marked as done: ')
         controller = Controller.get_instance()
-        controller.init_delete_item_view_listener(user_input)
+        controller.delete_item_view_listener(user_input)
 
     def print_result_output(self, task_name:str, task_description:str, is_done:bool):
         print('Task name: %s' % task_name)
