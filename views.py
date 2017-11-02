@@ -1,7 +1,7 @@
 import abc
 from controllers import Controller
 
-@abc.abstractproperty
+
 class AbstractView:
 
     def print_error_message(self, error_msg:str):
