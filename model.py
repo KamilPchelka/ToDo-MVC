@@ -54,6 +54,7 @@ class ToDoItem:
             ToDoItem.todo_items_list.remove(todo_item)
         else:
             raise Exception('Such item does not exist !')
+        ToDoItem.save_todo_items_to_file()
 
     @staticmethod
     def get_todo_items_list():
@@ -63,7 +64,6 @@ class ToDoItem:
 
     @staticmethod
     def save_todo_items_to_file():
-        if not ToDoItem.todo_items_list: return #if todoitems instance list is empty it does not save it to file
         with open('todoitems.data', 'wb') as output:
             pickle.dump(ToDoItem.todo_items_list, output, pickle.HIGHEST_PROTOCOL) #saves object to file
 
