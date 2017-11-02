@@ -37,6 +37,7 @@ class RootView(AbstractView):
 class AddTodoItemView(AbstractView):
 
     def print_view_info(self):
+        os.system('clear')
         print('Here you can add new TODO task.')
 
     def call_get_user_input_event(self):
@@ -57,6 +58,7 @@ class AddTodoItemView(AbstractView):
 class ModifyItemView(AbstractView):
 
     def print_view_info(self,):
+        os.system('clear')
         print('Here you can modify already added tasks!.')
 
     def call_get_user_input_event(self):
@@ -75,6 +77,7 @@ class ModifyItemView(AbstractView):
 class DeleteItemView(AbstractView):
 
     def print_view_info(self):
+        os.system('clear')
         print('Here you can delete already added tasks!')
 
     def call_get_user_input_event(self,):
@@ -89,6 +92,7 @@ class DeleteItemView(AbstractView):
 class MarkItemAsDoneView(AbstractView):
 
     def print_view_info(self):
+        os.system('clear')
         print('Here you can mark as done already added tasks!')
 
     def call_get_user_input_event(self,):
@@ -103,6 +107,7 @@ class MarkItemAsDoneView(AbstractView):
 class DisplayItemListView(AbstractView):
 
     def print_view_info(self, tasks_list:[]):
+        os.system('clear')
         print('List of added tasks:')
         for index, task in enumerate(tasks_list):
             task_name = task.get_name()
@@ -111,6 +116,7 @@ class DisplayItemListView(AbstractView):
 class DisplaySpecificItemView(AbstractView):
 
     def print_view_info(self):
+        os.system('clear')
         print('Here you can display information about TODO item with details!')
 
     def call_get_user_input_event(self):
