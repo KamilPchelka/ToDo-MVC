@@ -29,7 +29,7 @@ class RootView(AbstractView):
         from controllers import Controller
         self.print_view_info()
         controller = Controller.get_instance()
-        controller.root_view_listener(input("\n Type a number of option: "))
+        controller.root_view_listener(input("Type a number of option: "))
 
 class AddTodoItemView(AbstractView):
 
