@@ -62,11 +62,6 @@ class ToDoItem:
         return ToDoItem.todo_items_list
 
     @staticmethod
-    def get_item_by_id(id:int):
-        ToDoItem.load_todo_items_from_file()
-        return ToDoItem.todo_items_list
-
-    @staticmethod
     def save_todo_items_to_file():
         if not ToDoItem.todo_items_list: return #if todoitems instance list is empty it does not save it to file
         with open('todoitems.data', 'wb') as output:
