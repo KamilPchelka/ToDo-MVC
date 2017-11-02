@@ -1,9 +1,7 @@
 import abc
-from controllers import Controller
 
 
 class AbstractView:
-
     def print_error_message(self, error_msg:str):
         print('\033[91m' + error_msg + '\033[0m')
 
@@ -20,19 +18,15 @@ class AbstractView:
         ...
 
 class RootView(AbstractView):
+    menu_option_list = ['Add ToDo item', 'Modify item', 'Delete Item', 'Mark item as done', "Display item's list",
+                        "Display specific todo item's details", 'Exit']
 
     def print_view_info(self):
-        print(
-            """
-            1. Add ToDo item
-            2. Modify item
-            3. Delete Item
-            4. Mark item as done
-            5. Display item's list
-            6. Display specific todo item's details
-            7. Exit""")
+        for index, option in enumerate(self.menu_option_list):
+            print(index, option)
 
     def call_get_user_input_event(self):
+        from controllers import Controller
         self.print_view_info()
         controller = Controller.get_instance()
         controller.init_root_view_listener(input("\n Type a number of option: "))
@@ -43,6 +37,7 @@ class AddTodoItemView(AbstractView):
         print('Here you can add new TODO task.')
 
     def call_get_user_input_event(self):
+        from controllers import Controller
         self.print_view_info()
         controller = Controller.get_instance()
         print('Type info about item in following syntax <name:str,description:str,is done:bool>')
@@ -63,6 +58,7 @@ class ModifyItemView(AbstractView):
 
     def call_get_user_input_event(self):
         self.print_view_info()
+        from controllers import Controller
         print('If you want to change the name type: name,index,<new_name>')
         print('If you want to change the desc type: desc,index,<new_desc>')
         user_input = input('Your choice: ')
@@ -79,6 +75,7 @@ class DeleteItemView(AbstractView):
         print('Here you can delete already added tasks!.')
 
     def call_get_user_input_event(self,):
+        from controllers import Controller
         user_input = input('Index of item to be deleted: ')
         controller = Controller.get_instance()
         controller.init_delete_item_view_listener(user_input)
@@ -92,6 +89,7 @@ class MarkItemAsDoneView(AbstractView):
         print('Here you can mark as done already added tasks!.')
 
     def call_get_user_input_event(self,):
+        from controllers import Controller
         user_input = input('Index of item to be marked as done: ')
         controller = Controller.get_instance()
         controller.init_delete_item_view_listener(user_input)
@@ -113,6 +111,7 @@ class DisplaySpecificItemView(AbstractView):
         print('Here you can display information about TODO item with details!.')
 
     def call_get_user_input_event(self):
+        from controllers import Controller
         user_input = input('Index of item to be marked as done: ')
         controller = Controller.get_instance()
         controller.init_delete_item_view_listener(user_input)
