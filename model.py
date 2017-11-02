@@ -15,7 +15,8 @@ class ToDoItem:
 
     @staticmethod
     def raise_exception_if_item_with_such_name_exists(name:str):
-        for todo_item in ToDoItem.get_todo_items_list():
+        ToDoItem.load_todo_items_from_file()
+        for todo_item in ToDoItem.todo_items_list:
             if todo_item.get_name().lower() == name.lower():
                 raise Exception('Such TodoItem exists !')
 
@@ -56,6 +57,12 @@ class ToDoItem:
 
     @staticmethod
     def get_todo_items_list():
+        ToDoItem.load_todo_items_from_file()
+        if not ToDoItem.todo_items_list: raise Exception('List of Todo items is empty !')
+        return ToDoItem.todo_items_list
+
+    @staticmethod
+    def get_item_by_id(id:int):
         ToDoItem.load_todo_items_from_file()
         return ToDoItem.todo_items_list
 
