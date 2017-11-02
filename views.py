@@ -75,7 +75,7 @@ class ModifyItemView(AbstractView):
 class DeleteItemView(AbstractView):
 
     def print_view_info(self):
-        print('Here you can delete already added tasks!.')
+        print('Here you can delete already added tasks!')
 
     def call_get_user_input_event(self,):
         from controllers import Controller
@@ -89,7 +89,7 @@ class DeleteItemView(AbstractView):
 class MarkItemAsDoneView(AbstractView):
 
     def print_view_info(self):
-        print('Here you can mark as done already added tasks!.')
+        print('Here you can mark as done already added tasks!')
 
     def call_get_user_input_event(self,):
         from controllers import Controller
@@ -106,12 +106,12 @@ class DisplayItemListView(AbstractView):
         print('List of added tasks:')
         for index, task in enumerate(tasks_list):
             task_name = task.get_name()
-            print('%d. Name: %s,  Status: %s' % (index, task_name))
+            print('%d. Name: %s' % (index, task_name))
 
 class DisplaySpecificItemView(AbstractView):
 
     def print_view_info(self):
-        print('Here you can display information about TODO item with details!.')
+        print('Here you can display information about TODO item with details!')
 
     def call_get_user_input_event(self):
         from controllers import Controller
