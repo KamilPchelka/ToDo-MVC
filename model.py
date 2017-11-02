@@ -53,7 +53,7 @@ class ToDoItem:
         if ToDoItem.todo_items_list.__contains__(todo_item):
             ToDoItem.todo_items_list.remove(todo_item)
         else:
-            return None
+            raise Exception('Such item does not exist !')
 
     @staticmethod
     def get_todo_items_list():
