@@ -8,6 +8,7 @@ class AbstractView:
     def print_error_message(self, error_msg:str):
         os.system('clear')
         print('\033[91m' + error_msg + '\033[0m')
+        input('\nType any key...')
 
     @abc.abstractmethod
     def call_get_user_input_event(self):
@@ -16,6 +17,13 @@ class AbstractView:
     @abc.abstractmethod
     def print_result_output(self):
         ...
+
+    def print_todo_item_info(self, task_name:str, task_description:str, is_done:bool):
+        print('Task name: %s' % task_name)
+        print('Task description: %s' % task_description)
+        is_done = 'done' if is_done else 'undone'
+        print('Task status: %s' % 'done' if is_done else 'undone')
+        input('\nType any key...')
 
 class RootView(AbstractView):
 
@@ -45,10 +53,9 @@ class AddTodoItemView(AbstractView):
         controller.add_todo_item_view_listener(user_input)
 
     def print_result_output(self, task_name:str, task_description:str, is_done:bool):
+        os.system('clear')
         print('New item have been added successfully !')
-        print('Task name: %s' % task_name)
-        print('Task description: %s' % task_description)
-        print('Task status: %s' % 'done' if is_done else 'undone')
+        super().print_todo_item_info(task_name, task_description, is_done)
 
 
 class ModifyItemView(AbstractView):
@@ -64,6 +71,7 @@ class ModifyItemView(AbstractView):
 
     def print_result_output(self):
         print('The TODO item information have been updated successfully!')
+        input('\nType any key...')
 
 
 class DeleteItemView(AbstractView):
@@ -77,6 +85,7 @@ class DeleteItemView(AbstractView):
 
     def print_result_output(self, item_name:str):
         print('Item with name %s have been deleted successfully !' % item_name)
+        input('\nType any key...')
 
 class MarkItemAsDoneView(AbstractView):
 
@@ -89,6 +98,7 @@ class MarkItemAsDoneView(AbstractView):
 
     def print_result_output(self, item_name:str):
         print('Item with name %s have been marked as done successfully !' % item_name)
+        input('\nType any key...')
 
 class DisplayItemListView(AbstractView):
 
@@ -98,6 +108,7 @@ class DisplayItemListView(AbstractView):
         for index, task in enumerate(tasks_list):
             task_name = task.get_name()
             print('%d. Name: %s' % (index, task_name))
+        input('\nType any key...')
 
 class DisplaySpecificItemView(AbstractView):
 
@@ -109,6 +120,4 @@ class DisplaySpecificItemView(AbstractView):
         controller.delete_item_view_listener(user_input)
 
     def print_result_output(self, task_name:str, task_description:str, is_done:bool):
-        print('Task name: %s' % task_name)
-        print('Task description: %s' % task_description)
-        print('Task status: %s' % 'done' if is_done else 'undone')
+        super().print_todo_item_info(task_name, task_description, is_done)
