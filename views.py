@@ -92,7 +92,7 @@ class MarkItemAsDoneView(AbstractView):
 
 class DisplayItemListView(AbstractView):
 
-    def print_view_info(self, tasks_list:[]):
+    def print_result_output(self, tasks_list:[]):
         os.system('clear')
         print('List of added tasks:')
         for index, task in enumerate(tasks_list):
