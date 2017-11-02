@@ -21,7 +21,7 @@ class Controller():
     def get_instance(cls):
         """
         Retruns the singleton instance of Controller
-        :return:
+        :return: None
         """
         if cls.INSTANCE is None:
             cls.INSTANCE = Controller()
@@ -48,7 +48,7 @@ class Controller():
     def root_view_listener(self, input:str):
         """
         Method handles and process input from root view
-        :param input:
+        :param input: str-> user input as string
         :return:
         """
         tasks_list = ToDoItem.get_todo_items_list() #list of all avaible tasks
