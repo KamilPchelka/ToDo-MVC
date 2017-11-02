@@ -1,10 +1,12 @@
 import abc
+import os
 
 MENU_OPTION_LIST = ['Add ToDo item', 'Modify item', 'Delete Item', 'Mark item as done', "Display item's list",
                     "Display specific todo item's details", 'Exit']
 
 class AbstractView:
     def print_error_message(self, error_msg:str):
+        os.system('clear')
         print('\033[91m' + error_msg + '\033[0m')
 
     @abc.abstractmethod
@@ -23,7 +25,7 @@ class RootView(AbstractView):
 
 
     def print_view_info(self):
-        for index, option in enumerate(self.MENU_OPTION_LIST):
+        for index, option in enumerate(MENU_OPTION_LIST):
             print(str(index +1) + '. ' + option)
 
     def call_get_user_input_event(self):
