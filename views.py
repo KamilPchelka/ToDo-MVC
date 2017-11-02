@@ -25,6 +25,13 @@ class AbstractView:
         print('Task status: %s' % is_done)
         input('\nType any key...')
 
+    def print_tasks_list(self, tasks_list:[]):
+        print('List of added tasks:')
+        for index, task in enumerate(tasks_list):
+            task_name = task.get_name()
+            print('%d. Name: %s' % (index, task_name))
+        print()
+
 class RootView(AbstractView):
 
 
@@ -60,43 +67,49 @@ class AddTodoItemView(AbstractView):
 
 class ModifyItemView(AbstractView):
 
-    def call_get_user_input_event(self):
+    def call_get_user_input_event(self, tasks_list:[]):
         from controllers import Controller
         os.system('clear')
+        super().print_tasks_list(tasks_list)
         print('If you want to change the name type: name,index,<new_name>')
         print('If you want to change the desc type: desc,index,<new_desc>')
         user_input = input('Your choice: ')
         controller = Controller.get_instance()
-        controller.add_modify_item_view_listener(user_input)
+        controller.modify_item_view_listener(user_input, tasks_list)
 
     def print_result_output(self):
+        os.system('clear')
         print('The TODO item information have been updated successfully!')
         input('\nType any key...')
 
 
 class DeleteItemView(AbstractView):
 
-    def call_get_user_input_event(self,):
+    def call_get_user_input_event(self, tasks_list:[]):
         from controllers import Controller
         os.system('clear')
+        super().print_tasks_list(tasks_list)
         user_input = input('Index of item to be deleted: ')
         controller = Controller.get_instance()
-        controller.delete_item_view_listener(user_input)
+        controller.delete_item_view_listener(user_input, tasks_list)
 
     def print_result_output(self, item_name:str):
+        os.system('clear')
         print('Item with name %s have been deleted successfully !' % item_name)
         input('\nType any key...')
 
 class MarkItemAsDoneView(AbstractView):
 
-    def call_get_user_input_event(self,):
+    def call_get_user_input_event(self, tasks_list:[], ):
         from controllers import Controller
         os.system('clear')
+        super().print_tasks_list(tasks_list)
         user_input = input('Index of item to be marked as done: ')
         controller = Controller.get_instance()
-        controller.delete_item_view_listener(user_input)
+        controller.delete_item_view_listener(user_input, tasks_list)
 
     def print_result_output(self, item_name:str):
+        os.system('clear')
         print('Item with name %s have been marked as done successfully !' % item_name)
         input('\nType any key...')
 
@@ -104,17 +117,15 @@ class DisplayItemListView(AbstractView):
 
     def print_result_output(self, tasks_list:[]):
         os.system('clear')
-        print('List of added tasks:')
-        for index, task in enumerate(tasks_list):
-            task_name = task.get_name()
-            print('%d. Name: %s' % (index, task_name))
+        super().print_tasks_list(tasks_list)
         input('\nType any key...')
 
 class DisplaySpecificItemView(AbstractView):
 
-    def call_get_user_input_event(self):
+    def call_get_user_input_event(self, tasks_list:[]):
         from controllers import Controller
         os.system('clear')
+        super().print_tasks_list(tasks_list)
         user_input = input('Index of item to be marked as done: ')
         controller = Controller.get_instance()
         controller.delete_item_view_listener(user_input)
