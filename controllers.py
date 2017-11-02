@@ -3,6 +3,7 @@ import views
 from model import ToDoItem
 
 class Controller():
+    """Singleton Controller class"""
     INSTANCE = None
 
     def __init__(self):
@@ -18,12 +19,20 @@ class Controller():
 
     @classmethod
     def get_instance(cls):
+        """
+        Retruns the singleton instance of Controller
+        :return:
+        """
         if cls.INSTANCE is None:
             cls.INSTANCE = Controller()
         return cls.INSTANCE
 
 
     def start(self):
+        """
+        Method that runs main program loop
+        :return: None
+        """
         while True:
             os.system('clear')
             try:
@@ -37,6 +46,11 @@ class Controller():
                 self.root_view.print_error_message(str(e))
 
     def root_view_listener(self, input:str):
+        """
+        Method handles and process input from root view
+        :param input:
+        :return:
+        """
         tasks_list = ToDoItem.get_todo_items_list() #list of all avaible tasks
         if input not in [str(number) for number in range(1, len(views.MENU_OPTION_LIST) +1)]:
             self.root_view.print_error_message('Bad number of option !')
@@ -56,6 +70,11 @@ class Controller():
             self.root_view.exit_program('Thank you for using the program !')
 
     def add_todo_item_view_listener(self, user_input:str):
+        """
+        Method handles and process input from AddTodoItemView
+        :param input: str-> user input as string
+        :return:
+        """
         splitted_user_input = user_input.split(',')
         task_name = splitted_user_input[0]
         task_desc = splitted_user_input[1]
@@ -64,6 +83,12 @@ class Controller():
         self.add_todo_item_view.print_result_output(task_name, task_desc, task_status)
 
     def modify_item_view_listener(self, user_input:str, tasks_list):
+        """
+        Method handles and process input from ModifyTodoItemView
+        :param input: str-> user input as string
+        :param tasks_list: list -> a list of all tasks
+        :return:
+        """
         splitted_user_input = user_input.split(',')
         cmd = splitted_user_input[0].lower() #one of the following: 'name' , 'desc' that changes TodoItem attributes
         index = int(splitted_user_input[1])
@@ -78,16 +103,34 @@ class Controller():
         ToDoItem.save_todo_items_to_file()
 
     def delete_item_view_listener(self, user_input:str, tasks_list):
+        """
+        Method handles and process input from DeleteItemView
+        :param input: str-> user input as string
+        :param tasks_list: list -> a list of all tasks
+        :return:
+        """
         todo_item_to_be_removed = tasks_list[int(user_input)]
         ToDoItem.remove_todo_item(todo_item_to_be_removed)
         self.delete_item_view.print_result_output(todo_item_to_be_removed.get_name())
 
     def mark_item_as_done_view_listener(self, user_input:str, tasks_list):
+        """
+        Method handles and process input from MarkItemAsDoneView
+        :param input: str-> user input as string
+        :param tasks_list: list -> a list of all tasks
+        :return:
+        """
         todo_item_to_be_marked_as_done = tasks_list[int(user_input)]
         todo_item_to_be_marked_as_done.set_is_done(True)
         self.mark_item_as_done_view.print_result_output(todo_item_to_be_marked_as_done.get_name())
 
     def display_specyfic_item_view_listener(self, user_input:str, tasks_list):
+        """
+        Method handles and process input from DisplaySpecyficItemView
+        :param input: str-> user input as string
+        :param tasks_list: list -> a list of all tasks
+        :return:
+        """
         specyfic_todo_item = tasks_list[int(user_input)]
         name = specyfic_todo_item.get_name()
         desc = specyfic_todo_item.get_description()

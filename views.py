@@ -7,20 +7,41 @@ MENU_OPTION_LIST = ['Add ToDo item', 'Modify item', 'Delete Item', 'Mark item as
 CONFIRM_MESSAGE = '\nType ENTER...'
 
 class AbstractView:
+    """Abstract class for all views."""
     def print_error_message(self, error_msg:str):
+        """
+        Method prints error message
+        :param error_msg: str -> An error message.
+        :return: None
+        """
         os.system('clear')
         print('\033[91m' + error_msg + '\033[0m')
         input(CONFIRM_MESSAGE)
 
     @abc.abstractmethod
     def call_get_user_input_event(self):
+        """
+        Method calls get user input event
+        :return: None
+        """
         ...
 
     @abc.abstractmethod
     def print_result_output(self):
+        """
+        Method prints output controller's messages.
+        :return: None
+        """
         ...
 
     def print_todo_item_info(self, task_name:str, task_description:str, is_done:bool):
+        """
+        Method print detailed information about ceratin ToDo task
+        :param task_name: str -> name of the task
+        :param task_description: str -> description of the task
+        :param is_done: bool -> status of task true equals to done and false to undone
+        :return: None
+        """
         os.system('clear')
         print('Task name: %s' % task_name)
         print('Task description: %s' % task_description)
